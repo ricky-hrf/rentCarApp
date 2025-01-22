@@ -29,6 +29,7 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+    @livewireStyles
 </head>
 
 <body>
@@ -47,13 +48,8 @@
         <!-- Content Start -->
         <div class="content">
             @include('layout.navbar')
+            @yield('content')
 
-            @include('layout.Card')
-            <div class="container-fluid pt-4 px-4">
-                <div class="row g-4">
-                    @yield('content')
-                </div>
-            </div>
             <!-- Content End -->
         </div>
 
@@ -70,6 +66,7 @@
 
         <!-- Template Javascript -->
         <script src="js/main.js"></script>
+        @livewireScripts
 </body>
 
 </html>
