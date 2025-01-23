@@ -2,7 +2,7 @@
     <div class="row g-4">
         <div class="col-sm-12 col-xl-12">
             <div class="bg-light rounded h-100 p-4">
-                <h6 class="mb-4">Tambah Users</h6>
+                <h6 class="mb-4">Edit Users</h6>
                 <form>
                     <div class="mb-3">
                         <label for="name" class="form-label">Nama</label>
@@ -39,7 +39,7 @@
                             <div class="form-text text-danger">{{ $message }}</div>
                         @enderror
                     </div>
-                    <button type="button" class="btn btn-primary" wire:click="store">Simpan Data</button>
+                    <button type="button" class="btn btn-primary" wire:click="update">Simpan Data</button>
                 </form>
             </div>
         </div>
