@@ -21,7 +21,7 @@
             <a href="widget.html" class="nav-item nav-link"><i class="fa fa-handshake me-2"></i>Transaksi</a>
             <a href="form.html" class="nav-item nav-link"><i class="fa fa-folder-open me-2"></i>Laporan
                 Transaksi</a>
-            <a href="table.html" class="nav-item nav-link"><i class="fa fa-car me-2"></i>Mobil</a>
+            <a href="{{ route('mobil') }}" class="nav-item nav-link"><i class="fa fa-car me-2"></i>Mobil</a>
             <a href="{{ route('users') }}" class="nav-item nav-link"><i class="fa fa-users me-2"></i>Users</a>
         </div>
     </nav>
