@@ -16,6 +16,7 @@
                             <th scope="col">Merek</th>
                             <th scope="col">Jenis</th>
                             <th>Harga </th>
+                            <th>Foto </th>
                             <th>proses </th>
                         </tr>
                     </thead>
@@ -27,6 +28,10 @@
                                 <td>{{ $data->mark }}</td>
                                 <td>{{ $data->jenis }}</td>
                                 <td>{{ $data->harga }}</td>
+                                <td>
+                                    <img src="{{ asset('storage/mobil/' . $data->foto) }}" style="width:150px"
+                                        alt="{{ $data->mark }}">
+                                </td>
                                 <td>
                                     <button class="btn btn-info" wire:click="edit({{ $data->id }})">Edit</button>
                                     <button class="btn btn-danger"

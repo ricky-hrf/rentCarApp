@@ -39,9 +39,9 @@ class MobilComponent extends Component
             'foto.required' => 'Foto tidak boleh kosong!',
             'foto.image' => 'Foto dalam format image!',
         ]);
-        $this->foto->storeAs('mobil', $this->foto->hashName());
+        $this->foto->storeAs('public/mobil', $this->foto->hashName());
         Car::create([
-            'user_id' => auth()->user()->id,
+            'user_id' => auth()->Car::user()->id,
             'polNumber' => $this->polNumber,
             'mark' => $this->mark,
             'jenis' => $this->jenis,
@@ -49,6 +49,32 @@ class MobilComponent extends Component
             'foto' => $this->foto->hashName()
         ]);
         session()->flash('success', 'berhasil simpan data');
+        $this->reset();
+    }
+    public function update(){
+        $mobil = Car::find($this->id);
+        if(empty($this->foto)){
+            Car::create([
+                'user_id'=>auth()->user()->id;
+            ]);
+        }
+    }
+    public function edit($id)
+    {
+        $this->editPage = true;
+        $this->id = $id;
+        $mobil = Car::find($id);
+        $this->polNumber = $mobil->polNumber;
+        $this->mark = $mobil->mark;
+        $this->jenis = $mobil->jenis;
+        $this->harga = $mobil->harga;
+    }
+    public function destroy($id)
+    {
+        $mobil = Car::find($id);
+        unlink(public_path('storage/mobil' . $mobil->foto));
+        $mobil->delete();
+        session()->flash('success', 'berhasil hapus');
         $this->reset();
     }
 }
