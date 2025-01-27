@@ -22,8 +22,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="jenis" class="form-label">Jenis Mobil</label>
-                        <select class="form-select" name="jenis" id="jenis" value="{{ @old('jenis') }}"
-                            wire:model="jenis">
+                        <select class="form-select" name="" value="{{ @old('jenis') }}" wire:model="jenis">
                             <option value="">---pilih---</option>
                             <option value="sedan">Sedan</option>
                             <option value="MPV">MPV</option>

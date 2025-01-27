@@ -29,8 +29,12 @@
                                 <td>{{ $data->jenis }}</td>
                                 <td>{{ $data->harga }}</td>
                                 <td>
-                                    <img src="{{ asset('storage/mobil/' . $data->foto) }}" style="width:150px"
-                                        alt="{{ $data->mark }}">
+                                    @if ($data->foto)
+                                        <img src="{{ asset('storage/' . $data->foto) }}" alt="Foto Mobil"
+                                            width="100">
+                                    @else
+                                        <p>Tidak ada foto</p>
+                                    @endif
                                 </td>
                                 <td>
                                     <button class="btn btn-info" wire:click="edit({{ $data->id }})">Edit</button>

@@ -49,7 +49,7 @@
                             <div class="form-text text-danger">{{ $message }}</div>
                         @enderror
                     </div>
-                    <button type="button" class="btn btn-primary" wire:click="upadate()">Simpan
+                    <button type="button" class="btn btn-primary" wire:click="update()">Simpan
                         Data</button>
                 </form>
             </div>
