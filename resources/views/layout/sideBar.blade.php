@@ -18,7 +18,8 @@
         </div>
         <div class="navbar-nav w-100">
             <a href="index.html" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
-            <a href="widget.html" class="nav-item nav-link"><i class="fa fa-handshake me-2"></i>Transaksi</a>
+            <a href="{{ route('transaksi') }}" class="nav-item nav-link"><i
+                    class="fa fa-handshake me-2"></i>Transaksi</a>
             <a href="form.html" class="nav-item nav-link"><i class="fa fa-folder-open me-2"></i>Laporan
                 Transaksi</a>
             <a href="{{ route('mobil') }}" class="nav-item nav-link"><i class="fa fa-car me-2"></i>Mobil</a>
