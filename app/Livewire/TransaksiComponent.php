@@ -11,9 +11,16 @@ class TransaksiComponent extends Component
 {
     use WithPagination, WithoutUrlPagination;
     public $addPage, $editPage = false;
+    public $nama, $ponsel, $alamat, $lama, $tgl_pesan, $car_id;
     public function render()
     {
         $data['mobil'] = Car::paginate(5);
         return view('livewire.transaksi-component', $data);
+    }
+
+    public function create($id)
+    {
+        $this->car_id = $id;
+        $this->addPage = true;
     }
 }

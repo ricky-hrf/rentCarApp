@@ -50,7 +50,7 @@
                     </tbody>
                 </table>
                 {{ $mobil->links() }}
-                <button class="btn btn-primary" wire:click="create">Tambah</button>
+                <button class="btn btn-primary" wire:click="create({{ $data->car_id }})">Tambah</button>
             </div>
         </div>
     </div>
