@@ -23,7 +23,7 @@
                                     <li class="list-group-item">Kapasitas : {{ $data->kapasitas }}</li>
                                 </ul>
                                 <div class="card-body">
-                                    <button wire:click="create({{ $data->id }})"
+                                    <button wire:click="create({{ $data->id }}, {{ $data->harga }})"
                                         class="btn btn-outline-success card-link">Pesan</button>
                                 </div>
                             </div>

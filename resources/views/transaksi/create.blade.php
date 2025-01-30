@@ -30,19 +30,22 @@
                     </div>
                     <div class="mb-3">
                         <label for="lama" class="form-label">Lama Pemesanan</label>
-                        <input type="lama" class="form-control" id="lama" value="{{ @old('lama') }}"
-                            wire:model="lama">
+                        <input type="number" class="form-control" id="lama" value="{{ @old('lama') }}"
+                            wire:model="lama" wire:change="hitung">
                         @error('lama')
                             <div class="form-text text-danger">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="mb-3">
                         <label for="tgl_pesan" class="form-label">Tanggal Pemesanan</label>
-                        <input type="tgl_pesan" class="form-control" id="tgl_pesan" value="{{ @old('tgl_pesan') }}"
+                        <input type="date" class="form-control" id="tgl_pesan" value="{{ @old('tgl_pesan') }}"
                             wire:model="tgl_pesan">
                         @error('tgl_pesan')
                             <div class="form-text text-danger">{{ $message }}</div>
                         @enderror
+                    </div>
+                    <div class="mb-3">
+                        Total: {{ $total }}
                     </div>
                     <button type="button" class="btn btn-primary" wire:click="store">Simpan Data</button>
                 </form>
