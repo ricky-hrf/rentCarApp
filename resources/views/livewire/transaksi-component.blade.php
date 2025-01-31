@@ -7,6 +7,11 @@
                         {{ session('success') }}
                     </div>
                 @endif
+                @if (session()->has('error'))
+                    <div class="alert alert-danger" role="alert">
+                        {{ session('error') }}
+                    </div>
+                @endif
                 <h6 class="mb-4">Data Mobil</h6>
                 <div class="row">
                     @foreach ($mobil as $data)
@@ -24,21 +29,17 @@
                                 </ul>
                                 <div class="card-body">
                                     <button wire:click="create({{ $data->id }}, {{ $data->harga }})"
-                                        class="btn btn-outline-success card-link">Pesan</button>
+                                        class="btn btn-outline-success card-link">Pilih Mobil</button>
                                 </div>
                             </div>
                         </div>
                     @endforeach
                 </div>
-
                 {{ $mobil->links() }}
             </div>
         </div>
     </div>
     @if ($addPage)
         @include('transaksi.create')
-    @endif
-    @if ($editPage)
-        @include('mobil.edit')
     @endif
 </div>

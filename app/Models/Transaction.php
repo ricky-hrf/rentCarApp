@@ -13,7 +13,7 @@ class Transaction extends Model
 
     protected $table = 'transactions';
     protected $primaryKey = 'id';
-    protected $fillable = ['id', 'user_id', 'mobil_id', 'nama', 'ponsel', 'alamat', 'lama', 'tgl_pesan', 'total', 'status'];
+    protected $fillable = ['id', 'user_id', 'car_id', 'nama', 'ponsel', 'alamat', 'lama', 'tgl_pesan', 'total', 'status'];
 
     public function user(): BelongsTo
     {
@@ -21,6 +21,6 @@ class Transaction extends Model
     }
     public function car(): BelongsTo
     {
-        return $this->belongsTo(Car::class);
+        return $this->belongsTo(Car::class, 'car_id');
     }
 }

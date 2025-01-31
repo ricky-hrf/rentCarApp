@@ -4,6 +4,7 @@
             <div class="bg-light rounded h-100 p-4">
                 <h6 class="mb-4">Tambah Transaksi</h6>
                 <form>
+                    <input type="hidden" wire:model="car_id">
                     <div class="mb-3">
                         <label for="nama" class="form-label">Nama Pemesan</label>
                         <input type="text" class="form-control" id="nama" value="{{ @old('nama') }}"
@@ -47,7 +48,7 @@
                     <div class="mb-3">
                         Total: {{ $total }}
                     </div>
-                    <button type="button" class="btn btn-primary" wire:click="store">Simpan Data</button>
+                    <button type="button" class="btn btn-primary" wire:click="store">Simpan</button>
                 </form>
             </div>
         </div>

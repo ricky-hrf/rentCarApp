@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\Car;
+use App\Models\Transaction;
 use Livewire\Component;
 use Livewire\Features\SupportPagination\WithoutUrlPagination;
 use Livewire\WithPagination;
@@ -10,7 +11,7 @@ use Livewire\WithPagination;
 class TransaksiComponent extends Component
 {
     use WithPagination, WithoutUrlPagination;
-    public $addPage, $editPage = false;
+    public $addPage, $lihatPage = false;
     public $nama, $ponsel, $alamat, $lama, $tgl_pesan, $car_id, $harga, $total;
     public function render()
     {
@@ -39,7 +40,7 @@ class TransaksiComponent extends Component
             'ponsel' => 'required',
             'alamat' => 'required',
             'lama' => 'required',
-            'tgl_pesan' => 'required'
+            'tgl_pesan' => 'required',
         ], [
             'nama.required' => 'nama tidak boleh kosong',
             'ponsel.required' => 'Nomor ponsel tidak boleh kosong',
@@ -47,5 +48,31 @@ class TransaksiComponent extends Component
             'lama.required' => 'lama tidak boleh kosong',
             'tgl_pesan.required' => 'Tanggal pesan tidak boleh kosong',
         ]);
+        $cari = Transaction::where('car_id', $this->car_id)->where('tgl_pesan', $this->tgl_pesan)
+            ->where('status', '!=', 'SELESAI')->count();
+        if ($cari == 1) {
+            session()->flash('error', 'Mobil sudah dipesan');
+        } else {
+            Transaction::create([
+                'user_id' => auth()->user()->id,
+                'car_id' => $this->car_id,
+                'nama' => $this->nama,
+                'ponsel' => $this->ponsel,
+                'lama' => $this->lama,
+                'alamat' => $this->alamat,
+                'tgl_pesan' => $this->tgl_pesan,
+                'total' => $this->total,
+                'status' => 'WAIT'
+            ]);
+            session()->flash('success', 'Transaksi berhasil disimpan');
+        }
+        $this->dispatch('lihat-transaksi');
+        $this->reset();
+    }
+
+    public function lihat()
+    {
+        $this->dataTransaksi['transaksi'] = Transaction::paginate(10);
+        $this->lihatPage = true;
     }
 }
