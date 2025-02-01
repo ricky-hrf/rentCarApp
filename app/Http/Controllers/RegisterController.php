@@ -33,7 +33,8 @@ class RegisterController extends Controller
             [
                 'name' => 'required',
                 'email' => 'required|email',
-                'password' => 'required'
+                'password' => 'required',
+                'profile_picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             ],
             [
                 'name.required' => 'Nama tidak boleh kosong!',
@@ -43,16 +44,24 @@ class RegisterController extends Controller
             ]
         );
 
+        //cek apakah ada gambar yang unggah
+        if ($request->hasFile('profile_picture')) {
+            $file = $request->file('profile_picture');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $path = $file->storeAs('profile_pictures', $filename, 'public'); //simpan ke storage
+        } else {
+            $path = 'default.png'; // Bisa diganti dengan gambar default
+        }
+
         User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role' => 'admin'
-
+            'role' => 'admin',
+            'profile_picture' => $path,
         ]);
 
-        session()->flash('success', 'Berhasil mendaftar');
-        return redirect()->route('register');
+        return redirect()->route('register')->with('success', 'Registrasi berhasil! silahkan login');
     }
 
     /**

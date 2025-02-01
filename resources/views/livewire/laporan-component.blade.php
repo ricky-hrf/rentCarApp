@@ -8,6 +8,20 @@
                     </div>
                 @endif
                 <h6 class="mb-4">Laporan Transaksi</h6>
+                <div class="row">
+                    <div class="col-md-4">
+                        <input type="date" wire:model="tanggal1" class="form-control" placeholder="Tanggal">
+                    </div>
+                    <div class="col-md-1">
+                        s/d
+                    </div>
+                    <div class="col-md-4">
+                        <input type="date" wire:model="tanggal2" class="form-control" placeholder="Tanggal">
+                    </div>
+                    <div class="col-md-2">
+                        <button class="btn btn-sm btn-primary" wire:click="cari">Filter</button>
+                    </div>
+                </div>
                 <table class="table">
                     <thead>
                         <tr>
@@ -29,7 +43,7 @@
                                 <td>{{ $data->alamat }}</td>
                                 <td>{{ $data->tgl_pesan }}</td>
                                 <td>{{ $data->lama }} hari</td>
-                                <td>Rp {{ number_format($data->total, 2, ',', '.') }}</td>
+                                <td>@rupiah($data->total)</td>
                             @empty
                             <tr>
                                 <td colspan="6">Data transaksi mobil belum ada..</td>
@@ -38,6 +52,7 @@
                     </tbody>
                 </table>
                 {{ $transaksi->links() }}
+                <button class="btn btn-danger" wire:click="exportpdf">Export PDF</button>
             </div>
         </div>
     </div>

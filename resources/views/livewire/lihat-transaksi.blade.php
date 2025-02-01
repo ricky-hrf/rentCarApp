@@ -34,7 +34,7 @@
                                 <td>{{ $data->ponsel }}</td>
                                 <td>{{ $data->alamat }}</td>
                                 <td>{{ $data->tgl_pesan }}</td>
-                                <td>{{ $data->total }}</td>
+                                <td>@rupiah($data->total)</td>
                                 <td>{{ $data->lama }}</td>
                                 <td>{{ $data->status }}</td>
                                 <td>

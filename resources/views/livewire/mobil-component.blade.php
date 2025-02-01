@@ -27,7 +27,7 @@
                                 <td>{{ $data->polNumber }}</td>
                                 <td>{{ $data->mark }}</td>
                                 <td>{{ $data->jenis }}</td>
-                                <td>{{ $data->harga }}</td>
+                                <td>@rupiah($data->harga) / hari</td>
                                 <td>
                                     @if ($data->foto)
                                         <img src="{{ asset('storage/' . $data->foto) }}" alt="Foto Mobil"

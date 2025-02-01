@@ -29,20 +29,12 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </head>
 
 <body>
     <div class="container-xxl position-relative bg-white d-flex p-0">
-        <!-- Spinner Start -->
-        <div id="spinner"
-            class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
-                <span class="sr-only">Loading...</span>
-            </div>
-        </div>
-        <!-- Spinner End -->
-
-
         <!-- Sign Up Start -->
         <div class="container-fluid">
             <div class="row h-100 align-items-center justify-content-center" style="min-height: 100vh;">
@@ -60,7 +52,7 @@
                                 {{ session('success') }}
                             </div>
                         @endif
-                        <form action="{{ route('register.store') }}" method="POST">
+                        <form action="{{ route('register.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @error('name')
                                 <span class="text-danger">{{ $message }}</span>
@@ -86,6 +78,15 @@
                                     placeholder="Password" value="{{ @old('password') }}">
                                 <label for="floatingPassword">Password</label>
                             </div>
+
+                            @error('profile_picture')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                            <div class="mb-4">
+                                <label class="form-label">Foto Profil</label>
+                                <input type="file" name="profile_picture" class="form_control">
+                            </div>
+
                             <button type="submit" class="btn btn-primary py-3 w-100 mb-4">Sign Up</button>
                             <p class="text-center mb-0">Already have an Account? <a
                                     href="{{ route('login') }}">Login</a></p>
@@ -95,6 +96,22 @@
             </div>
         </div>
         <!-- Sign Up End -->
+        @if (session()->has('success'))
+            <script>
+                Swal.fire({
+                    title: "Registrasi Berhasil!",
+                    text: "{{ session('success') }}",
+                    icon: "success",
+                    confirmButtonText: "OK"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = "{{ route('login') }}";
+                    }
+                });
+            </script>
+        @endif
+
+
     </div>
 
     <!-- JavaScript Libraries -->

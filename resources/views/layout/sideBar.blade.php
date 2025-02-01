@@ -6,7 +6,8 @@
         </a>
         <div class="d-flex align-items-center ms-4 mb-4">
             <div class="position-relative">
-                <img class="rounded-circle" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
+                <img class="rounded-circle" src="{{ asset('storage/' . Auth::user()->profile_picture) }}" alt="Foto Profil"
+                    style="width: 40px; height: 40px;">
                 <div
                     class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1">
                 </div>
@@ -17,14 +18,18 @@
             </div>
         </div>
         <div class="navbar-nav w-100">
-            <a href="{{ route('home') }}" class="nav-item nav-link active"><i
+            <a href="{{ route('home') }}" class="nav-item nav-link {{ Request::is('/') ? 'active' : '' }}"><i
                     class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
-            <a href="{{ route('transaksi') }}" class="nav-item nav-link"><i
+            <a href="{{ route('transaksi') }}"
+                class="nav-item nav-link {{ Request::is('transaksi') ? 'active' : '' }}"><i
                     class="fa fa-handshake me-2"></i>Transaksi</a>
-            <a href="{{ route('laporan') }}" class="nav-item nav-link"><i class="fa fa-folder-open me-2"></i>Laporan
+            <a href="{{ route('laporan') }}" class="nav-item nav-link {{ Request::is('laporan') ? 'active' : '' }}"><i
+                    class="fa fa-folder-open me-2"></i>Laporan
                 Transaksi</a>
-            <a href="{{ route('mobil') }}" class="nav-item nav-link"><i class="fa fa-car me-2"></i>Mobil</a>
-            <a href="{{ route('users') }}" class="nav-item nav-link"><i class="fa fa-users me-2"></i>Users</a>
+            <a href="{{ route('mobil') }}" class="nav-item nav-link {{ Request::is('mobil') ? 'active' : '' }}"><i
+                    class="fa fa-car me-2"></i>Mobil</a>
+            <a href="{{ route('users') }}" class="nav-item nav-link {{ Request::is('users') ? 'active' : '' }}"><i
+                    class="fa fa-users me-2"></i>Users</a>
         </div>
     </nav>
 </div>
